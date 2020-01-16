@@ -57,6 +57,7 @@ const handleNewItemSubmit = function () {
         store.addItem(newItem);
         render();
       });
+      
   });
 };
 
