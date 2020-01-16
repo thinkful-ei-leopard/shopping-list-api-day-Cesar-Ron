@@ -1,5 +1,22 @@
 const BASE_URL = 'https://thinkful-list-api.herokuapp.com/Ron';
 
+function listApiFetch(...args) {
+  let error = null;
+  return fetch(...args)
+    .then(resp => {
+      if(!resp.ok) { //Valid HTTP response, but non-2XX status
+        error = {code: resp.status};
+      }
+      return resp.json();
+    })
+    .then(data => {
+      if(error) {
+        error.message = data.message;
+        return Promise.reject(error);
+      }
+      return data;
+    });
+}
 function getItems() {
   return fetch(`${BASE_URL}/items`);
 }
