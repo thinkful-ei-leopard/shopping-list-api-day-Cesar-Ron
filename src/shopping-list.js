@@ -32,7 +32,32 @@ const generateShoppingItemsString = function (shoppingList) {
   return items.join('');
 };
 
+const renderError = function() {
+  if (store.error) {
+    const genError = generateError(store.error);
+    $('.error-container').html(genError);
+  } else {
+    $('error-container').empty();
+  }
+};
+
+const handleCloseError = function () {
+  $('.error-container').on('click', '#cancel-error', () => {
+    store.setError(null);
+    renderError();
+  });
+};
+
+const generateError = function (message) {
+  return `
+      <section class="error-content">
+        <button id="cancel-error">X</button>
+        <p>${message}</p>
+      </section>
+    `;
+};
 const render = function () {
+  renderError();
   // Filter item list if store prop is true by item.checked === false
   let items = [...store.items];
   if (store.hideCheckedItems) {
@@ -150,6 +175,7 @@ const bindEventListeners = function () {
   handleDeleteItemClicked();
   handleEditShoppingItemSubmit();
   handleToggleFilterClick();
+  handleCloseError();
 };
 // This object contains the only exposed methods from this module:
 export default {

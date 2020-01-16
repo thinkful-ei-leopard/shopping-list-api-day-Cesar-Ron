@@ -20,6 +20,15 @@ button:hover {
   display: none;
 }
 
+.error-container {
+  color: red; /* WE STOLE THIS FROM TEH SOLUTION AND YOU CANT DO ANYTHING ABOUT IT */
+  font-weight: bold;
+}
+
+.error-container * {
+  display: inline-block;
+}
+
 #shopping-list-item {
   width: 250px;
 }
