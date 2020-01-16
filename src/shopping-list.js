@@ -56,6 +56,11 @@ const handleNewItemSubmit = function () {
       .then( newItem => {
         store.addItem(newItem);
         render();
+      })
+      .catch((error) => {
+        console.log(error);
+        store.setError(error.message);
+        renderError();
       });
       
   });
@@ -79,6 +84,11 @@ const handleDeleteItemClicked = function () {
       .then(() => {
         store.findAndDelete(id);
         render();
+      })
+      .catch((error) => {
+        console.log(error);
+        store.setError(error.message);
+        renderError();
       });
   });
 };
@@ -93,10 +103,13 @@ const handleEditShoppingItemSubmit = function () {
       .then(() => {
         store.findAndUpdate(id, {name: itemName});
         render();
+      })
+      .catch((error) => {
+        console.log(error);
+        store.setError(error.message);
+        renderError();
       });
-    
-    // store.findAndUpdateName(id, itemName);
-    render();
+  
   });
 };
 
@@ -115,6 +128,11 @@ const handleItemCheckClicked = function () {
       .then(() => {
         store.findAndUpdate(id, {checked: !checkedItem.checked});
         render();
+      })
+      .catch((error) => {
+        console.log(error);
+        store.setError(error.message);
+        renderError();
       });
   });
 };
