@@ -12,10 +12,12 @@ const main = function () {
   api.getItems()
     .then(res => res.json())
     .then((items) => {
-      items.forEach((item) => store.addItem(item));
-      shoppingList.render();
-    });
-
+      const item = items[0];
+      //return api.updateItem(item.id, { name: 'foobar' });
+      return api.updateItem(item.id, {checked: true} );
+    })
+    .then(res => res.json())
+    .then(() => console.log('updated!'));
     
   shoppingList.bindEventListeners();
   shoppingList.render();
@@ -34,7 +36,13 @@ const main = function () {
     .then((items) => {
       console.log(items);
     });
-
+// This DISPLAYS ALL ITEMS FROM TEH SERVER TO THE DOM DONT DELETE AGAIN PLZ
+  api.getItems()
+    .then(res => res.json())
+    .then((items) => {
+      items.forEach((item) => store.addItem(item));
+      shoppingList.render();
+    });
   // api.getItems()
   //   .then(res => res.json())
   //   .then(res => console.log(`GET ITEMS ${res}`));
