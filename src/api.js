@@ -15,7 +15,8 @@ function createItem(name) {
   });
 }
 /*
-    @params updateData will be an OBJECT */
+    @params updateData will be an OBJECT 
+    the object should be passed as {property : value} */
 function updateItem(id, updateData) {
   const newData = JSON.stringify( updateData );
   return fetch(`${BASE_URL}/items/${id}`, {
