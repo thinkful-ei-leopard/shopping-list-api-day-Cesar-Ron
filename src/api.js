@@ -28,8 +28,15 @@ function updateItem(id, updateData) {
   });
 }
 
+function deleteItem (id) {
+  return fetch(BASE_URL + '/items/' + id, {
+    method: 'DELETE'
+  });
+}
+
 export default {
   getItems,
   createItem,
-  updateItem
+  updateItem,
+  deleteItem
 };
